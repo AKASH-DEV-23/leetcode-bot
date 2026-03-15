@@ -55,7 +55,7 @@ export function domToNode(domNode: any): any {
 
 export async function createPage(node: any, title: string) {
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     try {
       const response = await axios.post(
         "https://api.telegra.ph/createPage",
@@ -69,7 +69,7 @@ export async function createPage(node: any, title: string) {
           headers: {
             "Content-Type": "application/json",
           },
-          timeout: 10000,
+          timeout: 20000,
         }
       );
 
@@ -77,7 +77,7 @@ export async function createPage(node: any, title: string) {
 
     } catch (err) {
       console.log("⚠️ Telegraph failed, retrying...");
-      await new Promise((r) => setTimeout(r, 5000));
+      await new Promise((r) => setTimeout(r, 9000));
     }
   }
 

@@ -127,14 +127,14 @@ export async function handler() {
         };
 
         async function sendTelegramWithRetry(chatId: string, caption: string, options: any) {
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 5; i++) {
                 try {
                     await sendMessage(chatId, caption, options);
                     console.log("message send successfully");
                     return;
                 } catch (err) {
                     console.log("⚠️ Telegram send failed, retrying...");
-                    await new Promise(r => setTimeout(r, 3000));
+                    await new Promise(r => setTimeout(r, 7000));
                 }
             }
             throw new Error("❌ Telegram send failed after retries");
