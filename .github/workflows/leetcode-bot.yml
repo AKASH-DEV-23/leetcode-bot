@@ -1,0 +1,33 @@
+name: LeetCode Telegram Bot
+
+on:
+  schedule:
+    - cron: "*/30 * * * *" # run every 30 minutes
+  workflow_dispatch: # manual run option
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install ts-node
+        run: npm install -g ts-node typescript
+
+      - name: Run LeetCode bot
+        run: npx ts-node src/tasks/leetcode/dailyquestion-en.ts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAPH_ACCESS_TOKEN: ${{ secrets.TELEGRAPH_ACCESS_TOKEN }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
