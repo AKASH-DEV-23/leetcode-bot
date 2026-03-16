@@ -2,7 +2,8 @@ name: LeetCode Telegram Bot
 
 on:
   schedule:
-    - cron: "*/30 * * * *" # run every 30 minutes
+    - cron: "10 0 * * *"
+    - cron: "30 0,1,2,3,4 * * *"
   workflow_dispatch: # manual run option
 
 jobs:
